@@ -1,12 +1,11 @@
 import sys
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 N = int(input())
 maxx= -1
 for i in range(N):
   arr = list(map(int, input().split()))
   arr.sort()
-  print(arr)
   a, b, c = arr
 
   if a == b and b == c:
