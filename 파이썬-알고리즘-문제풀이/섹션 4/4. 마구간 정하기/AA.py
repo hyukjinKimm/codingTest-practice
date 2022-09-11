@@ -5,6 +5,7 @@ import sys
 
 # 1 2 4 8 9 
 
+
 def Count(dist): # dist 이상으로 멀리할때 배치가능한 말의 수 
   cnt = 1
   p = point[0]
