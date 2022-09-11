@@ -1,5 +1,5 @@
 import sys
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 
 
@@ -14,6 +14,7 @@ def Count(dist): # dist 이상으로 멀리할때 배치가능한 말의 수
       cnt += 1
       p = point[i]
   return cnt 
+
 
 
 
