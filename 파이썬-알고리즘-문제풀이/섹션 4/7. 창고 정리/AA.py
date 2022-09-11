@@ -1,5 +1,5 @@
 import sys
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 L = int(input())
 boxes = list(map(int, input().split()))
