@@ -1,15 +1,9 @@
 import sys
 sys.stdin=open("input.txt", "r")
-N, K = list(map(int, input().split()))
-
-cnt = 0
-
-for i in range(1, N + 1):
-  if N % i == 0:
-    cnt += 1 
-  if cnt == K:
-    print(i)
-    break 
-else:
-  print(-1)
-    
+T = int(input())
+for i in range(T):
+  N, s, e, K = list(map(int, input().split()))
+  arr = list(map(int, input().split()))
+  b = arr[s-1: e]
+  b.sort()
+  print("#%d %d" %(i+1, b[K-1]))

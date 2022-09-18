@@ -1,12 +1,9 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-
-T =int(input())
+T = int(input())
 for i in range(T):
-  N, s, e, k = map(int, input().split())
+  N, s, e, K = list(map(int, input().split()))
   arr = list(map(int, input().split()))
-  tmp = arr[s-1:e]        
-  tmp.sort()
-  print("#%d %d" %(i+1, tmp[k-1]))
-
-
+  b = arr[s-1: e]
+  b.sort()
+  print("#%d %d" %(i+1, b[K-1]))
