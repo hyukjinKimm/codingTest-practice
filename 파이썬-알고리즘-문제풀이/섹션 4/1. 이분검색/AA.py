@@ -6,12 +6,13 @@ arr = list(map(int, input().split()))
 arr.sort()
 lt = 0
 rt = N - 1
-while lt <= rt :
+
+while lt <= rt:
   mid = (lt + rt) // 2
-  if M == arr[mid]:
+  if arr[mid] == M:
     print(mid+1)
     break
-  elif M > arr[mid]:
-    lt = mid + 1
+  elif arr[mid] > M:
+    rt = mid - 1
   else:
-    rt = mid - 1 
+    lt = mid + 1

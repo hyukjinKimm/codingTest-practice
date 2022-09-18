@@ -1,21 +1,18 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+arr.sort()
+lt = 0
+rt = N - 1
 
-
-board = [list(map(int, input().split())) for _ in range(7)]
-
-cnt = 0
-for i in range(7):
-  for j in range(3):
-    tmp = board[i][j:j+5]
-    if tmp == tmp[::-1]:
-      cnt += 1
-
-  for j in range(3):
-    for k in range(2):
-      if board[j+k][i] != board[4+j-k][i]:
-        break 
-    else:
-      cnt += 1 
-print(cnt)
+while lt <= rt:
+  mid = (lt + rt) // 2
+  if arr[mid] == M:
+    print(mid+1)
+    break
+  elif arr[mid] > M:
+    rt = mid - 1
+  else:
+    lt = mid + 1
