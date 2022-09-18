@@ -1,28 +1,31 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
-def Count(capacity): # capacity 만큼일때 필요한 DVD 갯수 
+
+
+def Count(dist): # dist 이상으로 말을 배치했을때 배치가능한 말의 수 
   cnt = 1 
-  p = music[0]
+  p = point[0]
   for i in range(1, N):
-    p += music[i]
-    if p > capacity:
+    if point[i] - p >= dist:
       cnt += 1
-      p = music[i]
+      p = point[i]
   return cnt
 
+N, C = map(int, input().split())
+point = []
+for i in range(N):
+  point.append(int(input()))
+point.sort()
 
-N, M = map(int, input().split())
-music = list(map(int, input().split()))
-
-res = -1
+lt = 1 
+rt = point[N-1] -  point[0]
 while lt <= rt:
   mid = (lt + rt) // 2
-
-  if Count(mid) <= M:
+  if Count(mid) >= C:
     res = mid 
-    rt = mid -1 
+    lt = mid + 1 
   else:
-    lt = mid + 1
+    rt = mid - 1
 
 print(res)
