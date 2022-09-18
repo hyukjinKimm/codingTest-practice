@@ -2,19 +2,16 @@ import sys
 sys.stdin=open("input.txt", "r")
 
 N = int(input())
-maxx = -1
-for i in range(N):
-  arr = list(map(int, input().split()))
-  arr.sort()
-  a, b, c = arr 
-  
-  if a == b and b == c:
-    money = 10000 + a * 1000 
-  elif a == b or b == c:
-    money = 1000 + b * 100 
-  else:
-    money = c * 100 
+score = list(map(int, input().split()))
 
-  if money > maxx:
-    maxx = money
-print(maxx)
+before = 0 
+res = 0
+
+for i in range(N):
+  if score[i] == 1:
+   
+    before += 1
+    res += before
+  else:
+    before = 0 
+print(res)

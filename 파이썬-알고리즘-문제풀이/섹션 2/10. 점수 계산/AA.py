@@ -2,14 +2,16 @@ import sys
 #sys.stdin=open("input.txt", "r")
 
 N = int(input())
-scores = list(map(int, input().split()))
-acc = 0
-tot = 0
+score = list(map(int, input().split()))
+
+before = 0 
+res = 0
 
 for i in range(N):
-  if scores[i] == 1:
-    acc += 1
-    tot += acc 
-  else: 
-    acc = 0
-print(tot)
+  if score[i] == 1:
+   
+    before += 1
+    res += before
+  else:
+    before = 0 
+print(res)
