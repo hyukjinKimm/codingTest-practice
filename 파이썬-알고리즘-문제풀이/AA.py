@@ -2,15 +2,12 @@ import sys
 sys.stdin=open("input.txt", "r")
 
 N =int(input())
-spec = []
-for i in range(N):
-  spec.append(list(map(int, input().split())))
+boxes = list(map(int, input().split()))
+M = int(input())
+for i in range(M):
+  boxes.sort()
+  boxes[0] += 1
+  boxes[N-1] -= 1
 
-spec.sort(reverse=True)
-largest = - 1
-cnt = 0
-for i in range(N):
-  if spec[i][1] > largest:
-    cnt += 1
-    largest = spec[i][1]
-print(cnt)
+boxes.sort()
+print(boxes[N-1] - boxes[0])

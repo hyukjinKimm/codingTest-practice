@@ -1,15 +1,13 @@
 import sys
 #sys.stdin=open("input.txt", "r")
 
-L = int(input())
+N =int(input())
 boxes = list(map(int, input().split()))
-
 M = int(input())
-boxes.sort()
 for i in range(M):
-  boxes[0] += 1
-  boxes[L-1] -= 1
   boxes.sort()
+  boxes[0] += 1
+  boxes[N-1] -= 1
 
-print(boxes[L-1] - boxes[0])
-
+boxes.sort()
+print(boxes[N-1] - boxes[0])
