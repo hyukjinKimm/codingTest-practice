@@ -1,14 +1,12 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
-N = int(input())
-for i in range(N):
-  word = input()
-  word = word.upper()
-  for j in range(len(word)//2):
-    if word[j] != word[-1-j]:
-      print('#%d NO' %(i+1))
-      break
-  else:
-      print('#%d YES' %(i+1)) 
+card = [i+1 for i in range(20)]
+for i in range(10):
+  a, b = map(int, input().split())
+  
+  for j in range((b-a)//2 + 1):
+    card[a-1+j], card[b-1-j] = card[b-1-j], card[a-1+j]
+for x in card:
+  print(x, end = ' ')
 
