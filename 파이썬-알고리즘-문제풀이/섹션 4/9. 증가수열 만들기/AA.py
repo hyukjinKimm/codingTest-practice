@@ -1,27 +1,35 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+
 N = int(input())
-arr = list(map(int ,input().split()))
+nums = list(map(int, input().split()))
+
 
 result = []
 last = -1
-while True:
-  tmp = []
-  if arr[0] > last:
-    tmp.append((arr[0], 'L'))
-  if arr[-1] > last:
-    tmp.append((arr[-1], 'R'))
+lt= 0 
+rt = N-1
+while lt <= rt:
+  n1 = nums[lt]
+  n2 = nums[rt]
+  tmp =[]
+  if n1 > last:
+    tmp.append([n1, 'L'])
+  if n2 > last:
+    tmp.append([n2, 'R'])
+  tmp.sort()
   if len(tmp) == 0:
     break
-  tmp.sort()
-  if tmp[0][1] == 'L':
-    result.append('L')
-    arr.pop(0)
   else:
-    result.append('R')
-    arr.pop()
-  last = tmp[0][0]
+    result.append(tmp[0][1])
+    last = tmp[0][0]
+    if tmp[0][1] == 'L':
+      lt += 1
+    else:
+      rt -= 1
+ 
 
 print(len(result))
-for i in result:
-  print(i, end= '')
+for x in result:
+  print(x, end = '')
+
