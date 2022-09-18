@@ -1,27 +1,28 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
-def Count(x): # x만큼 잘랐을때 나오는 라인의 갯수 
-  cnt = 0 
-  for l in line:
-    cnt += l // x 
+def Count(capacity): # capacity 만큼일때 필요한 DVD 갯수 
+  cnt = 1 
+  p = music[0]
+  for i in range(1, N):
+    p += music[i]
+    if p > capacity:
+      cnt += 1
+      p = music[i]
   return cnt
 
 
-K, N = map(int, input().split())
-line = []
-for i in range(K):
-  line.append(int(input()))
-line.sort()
-lt = 1 
-rt = line[K-1]
+N, M = map(int, input().split())
+music = list(map(int, input().split()))
 
 res = -1
 while lt <= rt:
   mid = (lt + rt) // 2
-  if Count(mid) >= N :
-    res = mid
-    lt = mid +1 
+
+  if Count(mid) <= M:
+    res = mid 
+    rt = mid -1 
   else:
-    rt = mid - 1
+    lt = mid + 1
+
 print(res)

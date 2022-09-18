@@ -1,27 +1,28 @@
 import sys
 #sys.stdin=open("input.txt", "r")
 
-def Count(capacity): # capacity 만큼으로 용량을 잡았을때 몇개면 모든 노래를 담을 수 있나?? 
-  summ = 0
-  cnt = 1
-  for m in music:
-    summ += m 
-    if summ > capacity:
+def Count(capacity): # capacity 만큼일때 필요한 DVD 갯수 
+  cnt = 1 
+  p = music[0]
+  for i in range(1, N):
+    p += music[i]
+    if p > capacity:
       cnt += 1
-      summ = m
+      p = music[i]
   return cnt
 
 
 N, M = map(int, input().split())
 music = list(map(int, input().split()))
-lt = 1
-rt = sum(music)
-minn = min(music)
+
+res = -1
 while lt <= rt:
   mid = (lt + rt) // 2
-  if (mid >= minn and Count(mid) <= M):
-    rt = mid - 1
+
+  if Count(mid) <= M:
     res = mid 
+    rt = mid -1 
   else:
     lt = mid + 1
+
 print(res)
