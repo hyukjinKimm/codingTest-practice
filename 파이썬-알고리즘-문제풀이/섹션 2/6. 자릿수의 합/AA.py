@@ -1,13 +1,18 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-N, M = map(int, input().split())
 
-ch = [0] * (N + M + 1)
+def digit_sum(x):
+  res = 0
+  while x > 0:
+    res += x % 10
+    x /= 10
+  return res
 
-for n in range(1, N+1):
-  for m in range(1, M+1):
-    ch[n+m] += 1
-maxx = max(ch)
-for i in range(2, N+M+1):
-  if ch[i] == maxx:
-    print(i, end = ' ')
+N = int(input())
+number = list(map(int ,input().split()))
+maxx = -1
+res = -1
+for i in range(N):
+  if digit_sum(number[i]) > maxx:
+    res = i 
+print(number[res])
