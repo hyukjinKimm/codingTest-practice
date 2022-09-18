@@ -1,15 +1,20 @@
 import sys
 sys.stdin=open("input.txt", "r")
 
-
 N = int(input())
-ch = [0] * (N+1)
-cnt = 0
-for i in range(2, N+1):
-  if ch[i] == 0:
-    cnt += 1
-    for j in range(i, N+1, i):
-      ch[j] = 1
-print(cnt)
+maxx = -1
+for i in range(N):
+  arr = list(map(int, input().split()))
+  arr.sort()
+  a, b, c = arr 
+  
+  if a == b and b == c:
+    money = 10000 + a * 1000 
+  elif a == b or b == c:
+    money = 1000 + b * 100 
+  else:
+    money = c * 100 
 
-
+  if money > maxx:
+    maxx = money
+print(maxx)
