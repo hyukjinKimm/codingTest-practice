@@ -1,14 +1,13 @@
 import sys
 sys.stdin=open("input.txt", "r")
-N, K = list(map(int, input().split()))
-card = list(map(int, input().split()))
+N, M = map(int, input().split())
 
-summ = set()
-for i in range(N):
-  for j in range(i+1, N):
-    for k in range(j+1, N):
-      summ.add(card[i] + card[j] + card[k])
+ch = [0] * (N + M + 1)
 
-summ = list(summ)
-summ.sort(reverse=True)
-print(summ[K-1])
+for n in range(1, N+1):
+  for m in range(1, M+1):
+    ch[n+m] += 1
+maxx = max(ch)
+for i in range(2, N+M+1):
+  if ch[i] == maxx:
+    print(i, end = ' ')
