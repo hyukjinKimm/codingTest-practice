@@ -2,15 +2,15 @@ import sys
 sys.stdin=open("input.txt", "r")
 
 N =int(input())
-time = []
+spec = []
 for i in range(N):
-  time.append(list(map(int, input().split())))
+  spec.append(list(map(int, input().split())))
 
-time.sort(key=lambda x: x[1])
-endtime = - 1
+spec.sort(reverse=True)
+largest = - 1
 cnt = 0
 for i in range(N):
-  if time[i][0] >= endtime:
+  if spec[i][1] > largest:
     cnt += 1
-    endtime = time[i][1]
+    largest = spec[i][1]
 print(cnt)
