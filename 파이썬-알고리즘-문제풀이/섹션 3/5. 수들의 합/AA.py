@@ -1,22 +1,27 @@
 import sys
 #sys.stdin=open("input.txt", "r")
 
-N, M = list(map(int, input().split()))
-numbers = list(map(int, input().split()))
-lt = 0
+N, M = map(int, input().split())
+number = list(map(int, input().split()))
+
+lt = 0 
 rt = 1
-summ = 0
-cnt = 0
+res = number[0]
+cnt = 0 
 
 while True:
-  summ = sum(numbers[lt:rt])
-  if M  <= summ :
-    cnt += 1
-    summ -= numbers[lt]
+  if res == M:
+    cnt += 1 
+    res -= number[lt]
     lt += 1
-  elif summ < M:
-    rt += 1
-  if rt >= N:
-    if summ < M:
-      break 
+  elif res < M:
+    if rt >= N:
+      break
+    else:
+      res += number[rt]
+      rt += 1
+  elif res > M:
+    res -= number[lt]
+    lt += 1
+
 print(cnt)
