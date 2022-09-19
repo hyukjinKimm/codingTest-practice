@@ -3,22 +3,23 @@ import sys
 sys.stdin=open("input.txt", "r")
 
 
-def dfs(x):
-  if x > N:
-    for i in range(1, N+1):
-      if ch[i] == 1:
-        print(i, end = ' ')
-    print()
+def dfs(x, summ):
+  if x >= N:
+    if (tot - summ) == summ:
+      print('YES')
+      sys.exit()
   else:
-    ch[x] = 1
-    dfs(x+1)
-    ch[x] = 0 
-    dfs(x+1)
+    dfs(x+1, summ + arr[x])
+    dfs(x+1, summ)
+    
 
 
 N = int(input())
+arr = list(map(int, input().split()))
+tot = sum(arr)
 ch = [0] * (N+1)
-dfs(1)
+dfs(0, 0)
+print('NO')
 
 
 
