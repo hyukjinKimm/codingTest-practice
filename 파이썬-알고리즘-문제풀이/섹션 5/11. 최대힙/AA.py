@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 import heapq as hq
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 arr = []
 while True:
@@ -12,6 +12,6 @@ while True:
     if len(arr) == 0:
       print(-1)
     else:
-      print(hq.heappop(arr))
+      print(-hq.heappop(arr))
   else:
-    hq.heappush(arr, n)
+    hq.heappush(arr, -n)

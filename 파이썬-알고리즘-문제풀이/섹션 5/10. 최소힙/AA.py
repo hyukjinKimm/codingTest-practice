@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 import heapq as hq
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 arr = []
 while True:
