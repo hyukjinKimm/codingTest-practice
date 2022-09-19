@@ -1,3 +1,10 @@
-AFC
-1
-AFFDCCFF
+5
+big
+good
+sky
+blue
+mouse
+sky
+good
+mouse
+big
