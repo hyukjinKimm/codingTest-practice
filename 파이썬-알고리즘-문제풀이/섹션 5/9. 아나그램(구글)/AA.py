@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 N1 = input()
 N2 = input()
@@ -15,6 +15,5 @@ for key, val in p.items():
   if val != 0:
     print('NO')
     break
-    
 else:
   print('YES')
