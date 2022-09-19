@@ -9,13 +9,13 @@ cnt = 0
 
 maxx = -1
 while True:
-  maxx = max(arr)
   p = arr.popleft()
-  if maxx[0] <= p[0]:
+  if any(p[0] < arr[i][0] for i in range(len(arr))):
+    arr.append(p)
+  else:
     cnt += 1
     if p[1] == M:
       print(cnt)
       break
-  else:
-    arr.append(p)
+
 
