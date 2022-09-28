@@ -2,19 +2,16 @@ import sys
 from collections import deque
 
 sys.stdin=open("input.txt", "r")
-N, M = map(int, input().split())
-arr = list(map(int, input().split()))
-arr = [[arr[i], i] for i in range(N)]
-arr = deque(arr)
-cnt = 0
-while True:
-  p = arr.popleft()
-  for i in range(len(arr)):
-    if p[0] < arr[i][0]:
-      arr.append(p)
-      break 
-  else:
-    cnt += 1
-    if p[1] == M:
-      print(cnt)
-      sys.exit()
+
+N = int(input())
+p = dict()
+for i in range(N):
+  word = input()
+  p[word] = p.get(word, 0) + 1 
+for i in range(N-1):
+  word = input()
+  p[word] -= 1 
+for k, v in p.items():
+  if v == 1:
+    print(k)
+    break
