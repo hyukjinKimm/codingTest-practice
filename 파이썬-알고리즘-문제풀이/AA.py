@@ -2,23 +2,25 @@ import sys
 import heapq as  hq
 sys.stdin=open("input.txt", "r")
 
-def D(L, sum):
+def D(L):
   global cnt
-  if L > cnt:
-    return
-  if sum > money:
-    return
-  if sum == money:
-    if L < cnt:
-      cnt = L
+  if L == M:
+   for x in res:
+    print(x, end = ' ')
+   print()
+   cnt += 1
   else:
     for i in range(N):
-      D(L+1, sum + coin[i])
+      if ch[i] == 0:
+        ch[i] = 1
+        res[L] = i+1
+        D(L+1)
+        ch[i] = 0
+
     
-N = int(input())
-coin = list(map(int, input().split()))
-coin.sort(reverse=True)
-money = int(input())
-cnt = float('inf')
-D(0, 0)
+N, M = map(int, input().split())
+res = [0] * M 
+ch = [0] * N
+cnt = 0
+D(0)
 print(cnt)
