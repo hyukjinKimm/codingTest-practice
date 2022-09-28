@@ -1,31 +1,24 @@
 import sys
-
+import heapq as  hq
 #sys.stdin=open("input.txt", "r")
 
-
-def dfs(summ, cnt):
-  global res
-  if cnt > res:
+def D(L, sum):
+  global cnt
+  if L > cnt:
     return
-  if summ > M:
+  if sum > money:
     return
-  if summ == M:
-    if cnt < res:
-      res = cnt 
+  if sum == money:
+    if L < cnt:
+      cnt = L
   else:
     for i in range(N):
-      dfs(summ + coins[i], cnt+1)
-
-
+      D(L+1, sum + coin[i])
     
-
 N = int(input())
-coins = list(map(int, input().split()))
-coins.sort(reverse=True)
-M = int(input())
-res = float('inf')
-dfs(0, 0)
-print(res)
-
-
-
+coin = list(map(int, input().split()))
+coin.sort(reverse=True)
+money = int(input())
+cnt = float('inf')
+D(0, 0)
+print(cnt)
