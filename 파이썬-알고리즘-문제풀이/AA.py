@@ -1,17 +1,16 @@
 import sys
-from collections import deque
-
+import heapq as  hq
 sys.stdin=open("input.txt", "r")
+a = []
+while True:
 
-N = int(input())
-p = dict()
-for i in range(N):
-  word = input()
-  p[word] = p.get(word, 0) + 1 
-for i in range(N-1):
-  word = input()
-  p[word] -= 1 
-for k, v in p.items():
-  if v == 1:
-    print(k)
-    break
+  n = int(input())
+  if n == -1:
+    sys.exit()
+  elif n == 0:
+    if len(a) == 0:
+      print(-1)
+    else:
+      print(-hq.heappop(a))
+  else:
+    hq.heappush(a, -n)
