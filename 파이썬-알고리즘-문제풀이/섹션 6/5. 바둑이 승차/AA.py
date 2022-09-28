@@ -1,33 +1,26 @@
 import sys
-
+import heapq as  hq
 #sys.stdin=open("input.txt", "r")
 
-
-def dfs(x, summ, tsum):
+def D(L, sum, tsum):
   global result
-  if tot - tsum + summ < result:
-    return
-  if C < summ:
-    return
-  if x >= N:
-    if summ > result:
-      result = summ
+  if sum > C:
+    return 
+  if tot - tsum + sum < result:
+    return 
+
+  if L == N:
+    if sum > result:
+      result = sum
   else:
-    dfs(x+1, summ + dogs[x], tsum + dogs[x])
-    dfs(x+1, summ, tsum  + dogs[x])
-
+    D(L+1, sum + dogs[L], tsum + dogs[L])
+    D(L+1, sum, tsum + dogs[L])
     
-
-
-C, N = list(map(int, input().split()))
+C, N = map(int, input().split())
 dogs = []
-result = -1
 for i in range(N):
   dogs.append(int(input()))
-dogs.sort(reverse=True)
 tot = sum(dogs)
-dfs(0 ,0, 0)
+result = -1
+D(0, 0, 0)
 print(result)
-
-
-

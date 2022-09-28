@@ -2,18 +2,25 @@ import sys
 import heapq as  hq
 sys.stdin=open("input.txt", "r")
 
-def D(L, sum):
-  if L == n:
-    if tot - sum == sum:
-      print('YES')
-      sys.exit()
-  else:
-    D(L+1, sum + number[L])
-    D(L+1, sum)
-    
+def D(L, sum, tsum):
+  global result
+  if sum > C:
+    return 
+  if tot - tsum + sum < result:
+    return 
 
-n = int(input())
-number = list(map(int, input().split()))
-tot = sum(number)
-D(0, 0)
-print('NO')
+  if L == N:
+    if sum > result:
+      result = sum
+  else:
+    D(L+1, sum + dogs[L], tsum + dogs[L])
+    D(L+1, sum, tsum + dogs[L])
+    
+C, N = map(int, input().split())
+dogs = []
+for i in range(N):
+  dogs.append(int(input()))
+tot = sum(dogs)
+result = -1
+D(0, 0, 0)
+print(result)
