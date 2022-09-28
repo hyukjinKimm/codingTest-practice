@@ -1,29 +1,10 @@
 import sys
 
 sys.stdin=open("input.txt", "r")
-N = input()
-stack = []
-for i in range(len(N)):
-
-  if N[i].isdecimal():
-    print(N[i], end = '')
-
-  elif N[i] == '*' or N[i] == '/':
-
-    while stack and (stack[-1] == '*' or stack[-1] == '/'):
-        print(stack.pop(), end = '')
-    stack.append(N[i])
-  elif N[i] == '+' or N[i] == '-':
-    while stack and stack[-1] != '(':
-      print(stack.pop(), end = '')
-    stack.append(N[i])
-  elif N[i] == ')':
-    while stack and stack[-1] != '(':
-      print(stack.pop(), end = '')
-    stack.pop()
-  elif N[i] == '(':
-    stack.append(N[i])
-while stack:
-  print(stack.pop(), end='')
-      
-    
+N, M = map(int, input().split())
+arr = [i+1 for i in range(N)]
+while len(arr) != 1:
+  for _ in range(M-1):
+    arr.append(arr.pop(0))
+  arr.pop(0)
+print(arr[0])
