@@ -1,12 +1,13 @@
 import sys
-
+import heapq as  hq
 #sys.stdin=open("input.txt", "r")
 
-def dfs(x):
-  if x == 0:
-    return
+def D(n):
+  if n == 0:
+    return 
   else:
-    dfs(x // 2)
-    print(x%2, end = '')
+    D(n//2)
+    print(n%2, end = '')
+
 n = int(input())
-dfs(n)
+D(n)

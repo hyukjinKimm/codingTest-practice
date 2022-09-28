@@ -1,24 +1,19 @@
 import sys
-
+import heapq as  hq
 #sys.stdin=open("input.txt", "r")
 
-
-def dfs(x):
-  if x > N:
-    for i in range(1, N+1):
-      if ch[i] == 1:
-        print(i, end = ' ')
+def D(L):
+  if L == n+1:
+    for i in range(1, n+1):
+      if res[i] == 1:
+        print(i, end=' ')
     print()
   else:
-    ch[x] = 1
-    dfs(x+1)
-    ch[x] = 0 
-    dfs(x+1)
+    res[L] = 1
+    D(L+1)
+    res[L] = 0
+    D(L+1)
 
-
-N = int(input())
-ch = [0] * (N+1)
-dfs(1)
-
-
-
+n = int(input())
+res = [0] * (n+1)
+D(1)
