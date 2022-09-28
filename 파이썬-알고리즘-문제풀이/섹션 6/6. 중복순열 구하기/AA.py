@@ -1,29 +1,22 @@
 import sys
-
+import heapq as  hq
 #sys.stdin=open("input.txt", "r")
 
-
-def dfs(index):
+def D(L):
   global cnt
-  if index == M:
+  if L == M:
     for x in res:
       print(x, end = ' ')
-    cnt += 1
     print()
-    return
+    cnt += 1
   else:
-    for i in range(1, N+1):
-      res[index] = i
-      dfs(index + 1)
-
+    for i in range(N):
+      res[L] = i+1 
+      D(L+1)
     
-
-
-N, M = list(map(int, input().split()))
-res = [0]*(M)
+N, M = map(int, input().split())
+arr = [i+1 for i in range(N)]
+res = [0] * M
 cnt = 0
-dfs(0)
+D(0)
 print(cnt)
-
-
-
