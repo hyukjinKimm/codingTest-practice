@@ -2,7 +2,7 @@ import sys
 #sys.stdin=open("input.txt", "r")
 dx=[-1, 0, 1, 0]
 dy=[0, 1, 0, -1]
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**VMFL6)
 def DFS(x, y, h):
     ch[x][y]=1
     for i in range(4):
