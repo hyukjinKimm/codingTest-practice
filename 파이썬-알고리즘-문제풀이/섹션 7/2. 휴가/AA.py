@@ -1,6 +1,6 @@
 import sys
 import heapq as  hq
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 def D(L, sum):
   global result 
