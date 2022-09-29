@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-sys.stdin=open("input.txt", "r")
+#sys.stdin=open("input.txt", "r")
 
 def DFS(L):
   global minn
