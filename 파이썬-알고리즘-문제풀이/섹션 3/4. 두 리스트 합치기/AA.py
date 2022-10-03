@@ -1,26 +1,22 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+a = int(input())
+arr = list(map(int, input().split()))
+b = int(input())
+brr = list(map(int, input().split()))
 
-N = int(input())
-NRR = list(map(int, input().split()))
-M = int(input())
-MRR = list(map(int, input().split()))
-
-i = 0 
-j = 0 
-result = []
-while i < N and j < M:
-  if NRR[i] > MRR[j]:
-    result.append(MRR[j])
-    j += 1
+ans = []
+i = 0
+j = 0
+while i < a and j < b:
+  if arr[i] < brr[j]:
+    ans.append(arr[i])
+    i += 1
   else:
-    result.append(NRR[i])   
-    i += 1 
-
-if i >= N:
-  result = result + MRR[j:]
+    ans.append(brr[j])
+    j += 1   
+if i == a:
+  ans = ans + brr[j:]
 else:
-  result = result + NRR[i:]
-
-for x in result:
-  print(x, end =  ' ')
+  ans = ans + arr[i:]
+print(ans)

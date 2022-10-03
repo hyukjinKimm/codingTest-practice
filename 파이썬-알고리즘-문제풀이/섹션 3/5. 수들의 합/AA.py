@@ -1,27 +1,24 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
 
-N, M = map(int, input().split())
-number = list(map(int, input().split()))
-
-lt = 0 
-rt = 1
-res = number[0]
-cnt = 0 
-
+lt = 0
+rt = lt + 1 
+sum = arr[lt]
+cnt = 0
 while True:
-  if res == M:
-    cnt += 1 
-    res -= number[lt]
+  if sum == k:
+    cnt += 1
+    sum -= arr[lt]
     lt += 1
-  elif res < M:
-    if rt >= N:
-      break
+  elif sum > k:
+    sum -= arr[lt]
+    lt += 1
+  else:
+    if rt == n:
+      break 
     else:
-      res += number[rt]
+      sum += arr[rt]
       rt += 1
-  elif res > M:
-    res -= number[lt]
-    lt += 1
-
 print(cnt)
