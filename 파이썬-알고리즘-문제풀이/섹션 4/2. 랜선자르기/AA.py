@@ -1,27 +1,24 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+import bisect
+N, K = map(int, input().split())
+line = []
+for _ in range(N):
+  line.append(int(input()))
+lt = 1
+rt = max(line)
+ans = -1
 
-def Count(x): # x만큼 잘랐을때 나오는 라인의 갯수 
+def Count(x):
   cnt = 0 
   for l in line:
-    cnt += l // x 
+    cnt += l // x
   return cnt
-
-
-K, N = map(int, input().split())
-line = []
-for i in range(K):
-  line.append(int(input()))
-line.sort()
-lt = 1 
-rt = line[K-1]
-
-res = -1
 while lt <= rt:
   mid = (lt + rt) // 2
-  if Count(mid) >= N :
-    res = mid
-    lt = mid +1 
+  if Count(mid) >= K:
+     ans = mid 
+     lt = mid + 1 
   else:
     rt = mid - 1
-print(res)
+print(ans)

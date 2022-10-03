@@ -1,31 +1,29 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+import bisect
+n, m = map(int, input().split())
+p = []
+for _ in range(n):
+  p.append(int(input()))
+p.sort()
+lt = 1
+rt = p[n-1]
 
-
-
-def Count(dist): # dist 이상으로 말을 배치했을때 배치가능한 말의 수 
-  cnt = 1 
-  p = point[0]
-  for i in range(1, N):
-    if point[i] - p >= dist:
+def Count(dist): # dist이상 길이로 배치하면 말 몇마리 배치 가능?
+  cnt = 1  
+  mark = p[0]
+  for x in p[1:]:
+    if x - mark >= dist:
+      mark = x 
       cnt += 1
-      p = point[i]
   return cnt
+    
 
-N, C = map(int, input().split())
-point = []
-for i in range(N):
-  point.append(int(input()))
-point.sort()
-
-lt = 1 
-rt = point[N-1] -  point[0]
 while lt <= rt:
   mid = (lt + rt) // 2
-  if Count(mid) >= C:
-    res = mid 
-    lt = mid + 1 
-  else:
+  if Count(mid) >= m: 
+    lt = mid + 1
+    ans = mid
+  else: 
     rt = mid - 1
-
-print(res)
+print(ans)

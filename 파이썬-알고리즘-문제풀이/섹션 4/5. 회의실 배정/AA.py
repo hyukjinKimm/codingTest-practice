@@ -1,16 +1,18 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+import bisect
+n = int(input())
+se = []
 
-N =int(input())
-time = []
-for i in range(N):
-  time.append(list(map(int, input().split())))
+for _ in range(n):
+  a, b = map(int, input().split())
+  se.append((a, b))
+se.sort(key=lambda x : x[1])
 
-time.sort(key=lambda x: x[1])
-endtime = - 1
-cnt = 0
-for i in range(N):
-  if time[i][0] >= endtime:
+endtime  = se[0][1]
+cnt = 1
+for value in se[1:]:
+  if value[0] >= endtime:
     cnt += 1
-    endtime = time[i][1]
+    endtime = value[1]
 print(cnt)

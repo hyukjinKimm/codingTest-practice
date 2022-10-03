@@ -1,28 +1,28 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-
-def Count(capacity): # capacity 만큼일때 필요한 DVD 갯수 
-  cnt = 1 
-  p = music[0]
-  for i in range(1, N):
-    p += music[i]
-    if p > capacity:
-      cnt += 1
-      p = music[i]
-  return cnt
-
-
-N, M = map(int, input().split())
+import bisect
+n, m = map(int, input().split())
 music = list(map(int, input().split()))
+lt = max(music)
+rt = sum(music)
 
-res = -1
+def Count(x): # x만큼 용량이면 DVD 몇장 나오는지? 
+  tmp = 0
+  cnt = 1  
+  for m in music:
+    tmp += m 
+    if tmp > x:
+      cnt += 1
+      tmp = m 
+
+  return cnt
+    
+
 while lt <= rt:
   mid = (lt + rt) // 2
-
-  if Count(mid) <= M:
-    res = mid 
-    rt = mid -1 
-  else:
-    lt = mid + 1
-
-print(res)
+  if Count(mid) > m: 
+    lt = mid + 1 
+  else: 
+    ans = mid 
+    rt = mid - 1 
+print(ans)

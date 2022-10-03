@@ -1,19 +1,18 @@
 import sys
 sys.stdin=open("input.txt", "r")
+import bisect
+n = int(input())
+se = []
 
-board = [list(map(int, input().split())) for _ in range(7)]
-cnt = 0
-for i in range(3):
-  for j in range(7):
-    for k in range(2):
-      if board[j][i+k] != board[j][4-k+i]:
-        break 
-    else:
-      cnt += 1
-  for j in range(7):
-    for k in range(2):
-      if board[i+k][j] != board[4-k+i][j]:
-        break 
-    else:
-      cnt += 1
+for _ in range(n):
+  a, b = map(int, input().split())
+  se.append((a, b))
+se.sort(key=lambda x : x[1])
+
+endtime  = se[0][1]
+cnt = 1
+for value in se[1:]:
+  if value[0] >= endtime:
+    cnt += 1
+    endtime = value[1]
 print(cnt)
