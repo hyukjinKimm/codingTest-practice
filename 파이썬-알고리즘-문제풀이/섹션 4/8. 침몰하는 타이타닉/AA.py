@@ -1,21 +1,26 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-from collections import deque
 
-N, M = map(int, input().split())
-passenger = list(map(int, input().split()))
-passenger.sort()
+n, m = map(int, input().split())
+weight = list(map(int, input().split()))
+weight.sort()
+
+lt = 0
+rt = n - 1
 cnt = 0
-arr = deque(passenger)
-while len(arr) > 0:
-  if len(arr) == 1:
+while lt <= rt:
+
+  if lt == rt:
     cnt += 1
     break 
-  p1 = arr.popleft()
-  p2 = arr.pop()
-  if p1 + p2 <= M:
+  elif weight[lt] + weight[rt] <= m:
     cnt += 1
+    lt += 1
+    rt -= 1
   else:
-    arr.appendleft(p1)
     cnt += 1
+    rt -= 1
 print(cnt)
+    
+  
+  

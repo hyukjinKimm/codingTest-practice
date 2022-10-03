@@ -1,18 +1,28 @@
 import sys
 sys.stdin=open("input.txt", "r")
-import bisect
+from collections import deque
 n = int(input())
-se = []
+arr = deque(list(map(int, input().split())))
 
-for _ in range(n):
-  a, b = map(int, input().split())
-  se.append((a, b))
-se.sort(key=lambda x : x[1])
 
-endtime  = se[0][1]
-cnt = 1
-for value in se[1:]:
-  if value[0] >= endtime:
-    cnt += 1
-    endtime = value[1]
-print(cnt)
+ans = ''
+last = -1
+while True:
+  tmp = []
+
+  if arr and last < arr[0]:
+    tmp.append((arr[0], 'L'))
+  if arr and last < arr[-1]:
+    tmp.append((arr[-1], 'R'))
+  if len(tmp) == 0:
+    break 
+
+  tmp.sort()
+  if tmp[0][1] == 'L':
+    ans += 'L'
+    arr.popleft()
+  else:
+    ans += 'R'
+    arr.pop()
+  last = tmp[0][0]
+print(ans)

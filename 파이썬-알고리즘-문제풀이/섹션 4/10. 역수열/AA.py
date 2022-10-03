@@ -1,19 +1,17 @@
 import sys
 #sys.stdin=open("input.txt", "r")
+from collections import deque
+n = int(input())
+arr = list(map(int, input().split()))
+ch = [0] * n 
+for i in range(n):
 
-N = int(input())
-nums = list(map(int, input().split()))
-
-ch = [0] * (N)
-
-for i in range(N):
-
-  for j in range(N):
-    if nums[i] == 0 and ch[j] == 0:
+  for j in range(n):
+    if ch[j] == 0 and arr[i] == 0:
       ch[j] = i+1
       break
     elif ch[j] == 0:
-      nums[i] -= 1
-      continue 
-for i in ch:
-  print(i, end=' ')
+      arr[i] -= 1
+      
+for x in ch:
+  print(x, end= ' ')
