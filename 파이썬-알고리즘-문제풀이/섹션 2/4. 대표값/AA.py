@@ -1,21 +1,22 @@
 import sys
 #sys.stdin=open("input.txt", "r")
 N = int(input())
-scores = list(map(int, input().split()))
-ave = int(sum(scores) / N + 0.5)
-
-res = -1
-res_score = -1
+score = list(map(int, input().split()))
+ave = int(sum(score) / N + 0.5 ) 
 diff = float('inf')
-for i in range(N):
-  if abs(scores[i] - ave) < diff:
-    diff = abs(scores[i] - ave)
-    res = i 
-    res_score = scores[i]
-  else:
-    if abs(scores[i] - ave) == diff:
-      if scores[i] > res_score:
-        res = i 
-        res_score = scores[i]
+
+res = 0
+res_score = 0
+for i, s in enumerate(score):
+  tmpDiff = abs(s - ave)
+  if tmpDiff  < diff:
+    diff = tmpDiff
+    res = i + 1 
+    res_score = s
+  elif tmpDiff == diff:
+    if s > res_score: # 지금 보는 점수가 이전의 점수보다 크면
+      res = i+1
+      res_score = s 
+print(ave, res)
+
     
-print(ave, res+1)

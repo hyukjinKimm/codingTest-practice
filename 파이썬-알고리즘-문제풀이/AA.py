@@ -1,30 +1,11 @@
 import sys
-from collections import deque
 sys.stdin=open("input.txt", "r")
-
-def DFS(L, sum):
-  global cnt
-  if sum > T:
-    return 
-
-  if L == K:
-    if sum == T:
-      cnt += 1
-    return
-  else:
-    for i in range(n[L] + 1):
-      DFS(L+1, sum + i * p[L])
-
-
-T = int(input())
-K = int(input())
-p = []
-n = []
-
-for i in range(K):
-  a, b = map(int, input().split())
-  p.append(a)
-  n.append(b)
-cnt = 0
-DFS(0, 0)
-print(cnt)
+N, M = map(int,  input().split())
+d = dict()
+for i in range(1, N+1):
+  for j in range(1, M+1):
+    d[i+j] = d.get(i+j, 0) + 1 
+maxx = max(d.values())
+for k, v in d.items():
+  if v == maxx:
+    print(k, end = ' ')

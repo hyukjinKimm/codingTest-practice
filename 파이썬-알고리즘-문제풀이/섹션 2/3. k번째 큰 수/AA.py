@@ -1,14 +1,11 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-N, K = list(map(int, input().split()))
-card = list(map(int, input().split()))
-
-summ = set()
-for i in range(N):
-  for j in range(i+1, N):
+N, M = map(int, input().split())
+cards = list(map(int, input().split()))
+ans = set()
+for i in range(N-2):
+  for j in range(i+1, N-1):
     for k in range(j+1, N):
-      summ.add(card[i] + card[j] + card[k])
-
-summ = list(summ)
-summ.sort(reverse=True)
-print(summ[K-1])
+      ans.add(cards[i] + cards[j] + cards[k])
+print(sorted(ans, reverse=True)[M-1])
+    
