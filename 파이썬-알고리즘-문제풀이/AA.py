@@ -1,11 +1,14 @@
 import sys
 sys.stdin=open("input.txt", "r")
-N, M = map(int,  input().split())
-d = dict()
-for i in range(1, N+1):
-  for j in range(1, M+1):
-    d[i+j] = d.get(i+j, 0) + 1 
-maxx = max(d.values())
-for k, v in d.items():
-  if v == maxx:
-    print(k, end = ' ')
+n = int(input())
+arr = list(map(int, input().split()))
+res = 0
+before = 0
+for c in arr:
+
+  if c == 1:
+    res += (before + 1) 
+    before += 1
+  else:
+    before = 0
+print(res)

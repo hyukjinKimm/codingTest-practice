@@ -1,17 +1,14 @@
 import sys
 #sys.stdin=open("input.txt", "r")
-
-N = int(input())
-score = list(map(int, input().split()))
-
-before = 0 
+n = int(input())
+arr = list(map(int, input().split()))
 res = 0
+before = 0
+for c in arr:
 
-for i in range(N):
-  if score[i] == 1:
-   
+  if c == 1:
+    res += (before + 1) 
     before += 1
-    res += before
   else:
-    before = 0 
+    before = 0
 print(res)
