@@ -1,28 +1,34 @@
 import sys
-import heapq as  hq
+from collections import deque
+from itertools import permutations
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L):
+def d(P):
+  ch[P] = True
+ 
   global cnt
-  ch[L] = 1
-  global cnt
-  if L == N:
+  if P == n-1:
     cnt += 1
+  
   else:
-    for i in range(1, N+1):
-      if ch[i] == 0:
-        if mapp[L][i] == 1:
-          D(i)
-          ch[i] = 0
+    for i in range(n):
+      if graph[P][i] == 1 and ch[i] == False: 
+        ch[i] = True
+        d(i)
+        ch[i] = False
+      
+     
+  
 
     
-N, M = map(int, input().split())
-mapp = [[0] * (N+1) for _ in range(N+1)]
-
-for i in range(M):
-  a, b = map(int, input().split())
-  mapp[a][b] = 1
-ch = [0] * (N+1)
+      
+n, m = map(int, input().split())
+graph = [[0] * n for _ in range(n)]
+for i in range(m):
+ a, b = map(int, input().split())
+ graph[a-1][b-1] = 1
+ch = [False] * n 
 cnt = 0
-D(1)
+d(0)
 print(cnt)

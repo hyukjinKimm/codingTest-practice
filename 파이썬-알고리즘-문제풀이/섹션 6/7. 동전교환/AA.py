@@ -1,24 +1,28 @@
 import sys
-import heapq as  hq
+from collections import deque
+from itertools import product
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L, sum):
-  global cnt
-  if L > cnt:
-    return
-  if sum > money:
-    return
-  if sum == money:
-    if L < cnt:
-      cnt = L
-  else:
-    for i in range(N):
-      D(L+1, sum + coin[i])
+def d(L, sum):
+  global result
+  if L >= result:
+    return 
+  if sum > m:
+    return 
+  if sum == m:
+    if L < result:
+      result = L 
+      return 
     
-N = int(input())
-coin = list(map(int, input().split()))
-coin.sort(reverse=True)
-money = int(input())
-cnt = float('inf')
-D(0, 0)
-print(cnt)
+  else:
+    for c in coin:
+      d(L+1, sum + c)
+
+      
+n = int(input())
+coin = sorted(list(map(int, input().split())), reverse=True)
+m = int(input())
+result = 1000
+d(0, 0)
+print(result)

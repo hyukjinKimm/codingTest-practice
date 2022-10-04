@@ -1,26 +1,28 @@
 import sys
-import heapq as  hq
+from collections import deque
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L, sum, tsum):
+def d(L, sum, tsum):
   global result
-  if sum > C:
-    return 
+  if sum > c:
+    return
   if tot - tsum + sum < result:
     return 
-
-  if L == N:
-    if sum > result:
-      result = sum
+  if L == n:
+    if result < sum:
+      result = sum 
   else:
-    D(L+1, sum + dogs[L], tsum + dogs[L])
-    D(L+1, sum, tsum + dogs[L])
+    d(L+1, sum + dog[L], tsum + dog[L])
+    d(L+1, sum, tsum + dog[L])
     
-C, N = map(int, input().split())
-dogs = []
-for i in range(N):
-  dogs.append(int(input()))
-tot = sum(dogs)
+    
+
+c, n = map(int, input().split())
+dog = []
+for _ in range(n):
+  dog.append(int(input()))
+tot = sum(dog)
 result = -1
-D(0, 0, 0)
+d(0, 0, 0)
 print(result)

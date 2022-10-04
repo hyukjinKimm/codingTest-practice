@@ -1,13 +1,14 @@
 import sys
-import heapq as  hq
+from collections import deque
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(n):
-  if n == 0:
-    return 
+def b(x):
+  if x == 0:
+    return
   else:
-    D(n//2)
-    print(n%2, end = '')
+    b(x//2)
+    print(x%2,end='')
 
 n = int(input())
-D(n)
+b(n)

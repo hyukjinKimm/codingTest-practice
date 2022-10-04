@@ -1,22 +1,23 @@
 import sys
-import heapq as  hq
+from collections import deque
+from itertools import product
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L):
+def d(L):
   global cnt
-  if L == M:
+  if L == m:
+    cnt += 1
     for x in res:
       print(x, end = ' ')
     print()
-    cnt += 1
   else:
-    for i in range(N):
-      res[L] = i+1 
-      D(L+1)
-    
-N, M = map(int, input().split())
-arr = [i+1 for i in range(N)]
-res = [0] * M
+    for i in range(n): # i 0 - 2
+      res[L] = i+1
+      d(L+1)
+      
+n, m = map(int, input().split())
 cnt = 0
-D(0)
+res = [0] * m 
+d(0)
 print(cnt)
