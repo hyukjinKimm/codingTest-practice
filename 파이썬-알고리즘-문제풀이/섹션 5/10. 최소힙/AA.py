@@ -1,16 +1,19 @@
 import sys
-import heapq as  hq
+from collections import deque
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
-a = []
-while True:
 
+
+arr = []
+while True:
   n = int(input())
   if n == -1:
-    sys.exit()
+    break 
   elif n == 0:
-    if len(a) == 0:
+    if len(arr) == 0:
       print(-1)
     else:
-      print(hq.heappop(a))
+      print(hq.heappop(arr))
   else:
-    hq.heappush(a, n)
+    hq.heappush(arr, n)
+

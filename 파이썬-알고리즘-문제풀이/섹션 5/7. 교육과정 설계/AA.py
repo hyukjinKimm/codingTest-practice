@@ -1,20 +1,22 @@
 import sys
 from collections import deque
-
 #sys.stdin=open("input.txt", "r")
-Need = list(input())
-N = int(input())
-for i in range(N):
-  need = deque(Need.copy())
-  time = input()
-  for j in range(len(time)):
-    if time[j] in need:
-      first = need.popleft()
-      if first != time[j]:
-        print("#%d NO" %(i+1))
+
+N = input()
+k = int(input())
+for o in range(k):
+  need = deque(N) 
+  time = deque(input())
+  for i in range(len(time)):
+    t = time[i]
+    if t in need:
+      n = need.popleft()
+      if t != n:
+        print(f'#{o+1} NO')
         break 
   else:
-    if len(need) != 0:
-      print("#%d NO" %(i+1))
+    if need:
+        print(f'#{o+1} NO')
     else:
-      print("#%d YES" %(i+1))  
+        print(f'#{o+1} YES')
+  
