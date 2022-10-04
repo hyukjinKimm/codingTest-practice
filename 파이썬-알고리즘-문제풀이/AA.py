@@ -1,28 +1,12 @@
 import sys
-sys.stdin=open("input.txt", "r")
 from collections import deque
-n = int(input())
-arr = deque(list(map(int, input().split())))
+sys.stdin=open("input.txt", "r")
 
-
-ans = ''
-last = -1
-while True:
-  tmp = []
-
-  if arr and last < arr[0]:
-    tmp.append((arr[0], 'L'))
-  if arr and last < arr[-1]:
-    tmp.append((arr[-1], 'R'))
-  if len(tmp) == 0:
-    break 
-
-  tmp.sort()
-  if tmp[0][1] == 'L':
-    ans += 'L'
-    arr.popleft()
-  else:
-    ans += 'R'
-    arr.pop()
-  last = tmp[0][0]
-print(ans)
+n, k = map(int, input().split())
+arr = [i+1 for i in range(n)]
+arr = deque(arr)
+while len(arr) > 1:
+  for _ in range(k-1):
+    arr.append(arr.popleft())
+  arr.popleft()
+print(arr[0])
