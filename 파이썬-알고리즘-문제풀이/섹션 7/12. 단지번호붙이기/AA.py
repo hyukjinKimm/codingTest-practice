@@ -1,36 +1,38 @@
 import sys
 from collections import deque
+from itertools import permutations
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def DFS(P):
+def d(a, b):
   global cnt
-  a, b = P
+
   for i in range(4):
     x = a + dx[i]
-    y = b + dy[i]
-    if 0 <= x < N and 0 <= y < N and mapp[x][y] == 1:
-      mapp[x][y] = 0
+    y = b  + dy[i]
+    if 0 <=x < n and 0 <=y<n and arr[x][y] == 1:
+      arr[x][y] = 0
       cnt += 1
-      DFS((x, y))
+      d(x, y)
+     
 
+ 
+
+   
+n = int(input())
+arr = [list(map(int, input())) for _ in range(n)]
+
+ch = [[False] * n for  _ in range(n)]
 dx = [-1, 0, 1, 0]
-dy = [0, 1, 0 ,-1]
-
-
-
-N = int(input())
-mapp = [list(map(int, input())) for _ in range(N)]
-Q = deque()
-res = []
-for i in range(N):
-  for j in range(N):
-    if mapp[i][j] == 1:
+dy = [0 ,1, 0, -1]
+res=[]
+q = deque()
+for i in range(n):
+  for j in range(n):
+    if arr[i][j] == 1:
+      arr[i][j] = 0
       cnt = 1
-      mapp[i][j] = 0 
-      DFS((i, j))
+      d(i, j)
       res.append(cnt)
-      
-res.sort()
 print(len(res))
-for x in res:
-  print(x)
+print(sorted(res))
