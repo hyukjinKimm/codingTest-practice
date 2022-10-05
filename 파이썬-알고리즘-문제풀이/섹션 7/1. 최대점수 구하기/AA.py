@@ -1,28 +1,33 @@
 import sys
-import heapq as  hq
+from collections import deque
+from itertools import permutations
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L, time, profit):
-  global result 
-  if time > M:
-    return 
-
-  if L == N:
-    if profit > result:
-      result = profit
+def d(L, ssum, tsum):
+  global result
+  if L == n:
+    if tsum > m:
+      return
+    else:
+      if ssum > result:
+        result = ssum
   else:
-    D(L+1, time + t[L], profit + p[L])
-    D(L+1, time , profit)
+    d(L+1, ssum+s[L], tsum + t[L])
+    d(L+1, ssum, tsum)
+      
+     
+  
 
     
-N, M = map(int, input().split())
-t = []
-p = []
-for i in range(N):
+      
+n, m = map(int, input().split())
+s = []
+t= [ ]
+for i in range(n):
   a, b = map(int, input().split())
+  s.append(a)
   t.append(b)
-  p.append(a)
-result = 0 
-
-D(0, 0, 0)
+result = -1
+d(0, 0, 0)
 print(result)

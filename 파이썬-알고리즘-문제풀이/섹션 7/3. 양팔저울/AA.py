@@ -1,21 +1,24 @@
 import sys
-import heapq as  hq
+from collections import deque
+from itertools import permutations
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def D(L, sum):
- 
-  if L == N:
+def d(L, sum):
+  global result
+  if L == n:
     if sum > 0:
-      res.add(sum)
-  else:
-    D(L+1, sum + weight[L])
-    D(L+1, sum)
-    D(L+1, sum - weight[L]) 
+      result.add(sum)
+    return     
+  d(L+1, sum + w[L])
+  d(L+1, sum - w[L])
+  d(L+1, sum )
     
+  
 
-    
-N = int(input())
-weight = list(map(int, input().split()))
-res = set()
-D(0, 0)
-print(sum(weight) - len(res))
+n = int(input())
+w = list(map(int, input().split()))
+result = set()
+
+d(0, 0)
+print(sum(w) - len(result))

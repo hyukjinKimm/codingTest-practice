@@ -1,30 +1,30 @@
 import sys
 from collections import deque
+from itertools import permutations
+import heapq as hq
 #sys.stdin=open("input.txt", "r")
 
-def DFS(L, sum):
-  global cnt
+def d(L, sum):
+  global result
   if sum > T:
-    return 
-
-  if L == K:
-    if sum == T:
-      cnt += 1
     return
+  if L == N:
+    if sum == T:
+      result += 1
   else:
-    for i in range(n[L] + 1):
-      DFS(L+1, sum + i * p[L])
+    for i in range(n[L] + 1): 
+      d(L+1, sum + i*c[L])
 
-
+   
+  
 T = int(input())
-K = int(input())
-p = []
+N = int(input())
+c = []
 n = []
-
-for i in range(K):
-  a, b = map(int, input().split())
-  p.append(a)
+for _ in range(N):
+  a, b= map(int, input().split())
+  c.append(a)
   n.append(b)
-cnt = 0
-DFS(0, 0)
-print(cnt)
+result = 0
+d(0, 0)
+print(result)
