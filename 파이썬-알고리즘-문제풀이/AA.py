@@ -26,3 +26,4 @@ while q:
       degree[i] -= 1
       if degree[i] == 0:
         q.append(i)
+d
