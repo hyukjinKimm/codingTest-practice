@@ -1,27 +1,24 @@
 import sys
 sys.stdin=open("input.txt", "r")
-n, m, k = map(int, input().split())
-arr = list(map(int, input().split()))
+def count(x): # x로 이루어진 덩어리 갯수를 찾느다 .
+  p = -1 
+  cnt = 0
+  for i in range(len(s)):
+    if s[i] == x:
+        p = i  
+    else:
+      if p != -1:
+        cnt += 1
+        p = - 1
+  else:
+      if p != -1:
+        cnt += 1
 
-sum = 0
-arr.sort()
-first = arr[n-1]
-second = arr[n-2]
-
-
-index = 0
-sum = 0
-xx = m // (k + 1)  # 덩어리가 몇개 나오나 
-sum += xx * k * first 
-sum += xx * second 
-m -= xx*(k+1)
-sum += m * first
-
-
-
-
-print(sum) 
-
-  
-
-
+  return cnt
+s = list(map(int, input()))
+res1 = count(0)
+res2 = count(1)
+if res1 >= res2:
+    print(res2)
+else:
+    print(res1)

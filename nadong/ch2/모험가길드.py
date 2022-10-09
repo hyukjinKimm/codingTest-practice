@@ -1,14 +1,17 @@
 import sys
 sys.stdin=open("input.txt", "r")
-N = int(input())
+n = int(input())
 arr = list(map(int, input().split()))
 arr.sort()
-
-cnt = 0 
-res = 0 
-for i in arr:
+print(arr)
+cnt = 0
+result = 0 
+i = 0 
+while i < n :
   cnt += 1
-  if cnt >= i:
-    res += 1 
+  if cnt >= arr[i]:
+    result += 1
     cnt = 0 
-print(res)
+  i += 1
+print(result)
+

@@ -1,20 +1,14 @@
-
 import sys
 sys.stdin=open("input.txt", "r")
-N, K = map(int, input().split())
-cnt = 0
+n, k = map(int, input().split()) # n >= k >= 2 
 
+cnt = 0 
+while n >= k:
+  target = n // k * k 
+  cnt += n - target 
+  n = target // k 
+  cnt += 1
 
-while True:
-  if N < K:
-    cnt += N-1 
-    break
-  else: 
-    target = (N//K) * K 
-    cnt += N - target  
-    N = target // K 
-    cnt += 1     
-
-
-print(cnt)
-    
+cnt +=  n-1
+print(cnt) 
+  
