@@ -2,32 +2,50 @@ import sys
 
 sys.stdin=open("input.txt", "r")
 
-def get_bin(x):
-  cnt = 0
-  sum = 1
-  while True:
-    sum = 2 ** cnt 
-    if sum >= x:
-      return sum
-    cnt += 1 
 
-  
+def solve(n):
+  k  = -1
+  ki = 0
+  for i in range(len(n)-1, 0, -1):
+    for j in range(i-1, -1, -1):
+      if int(n[j]) < int(n[i]):
+        if j > k :
+          ki = i
+          k=j 
+        elif j == k:
+          if n[i] < n[ki] :
+            ki = i
+  else:
+    if k == -1:
+      print('BIGGEST')
+    else:
+      n[k], n[ki] = n[ki], n[k]
+      res = n[:k+1]
+      res += sorted(n[k+1:])
+      print("".join(res))
+    
+
 
 
 def main():
-  n = int(input())
-  b = list(bin(n))
-  chk = 0
-  for i, c in enumerate(b[2:]):
-    if c == '1':
-      chk = i+1 
-  if chk == 1:
-    print(n, 0)
-  else:
-    print(get_bin(n), chk)
+  t = int(input())
+  for i in range(t):
+    n = list(input())
+    if len(n) == 1 or len(n) == 2:
+      print('BIGGEST')
+      return
+    solve(n)
 
-  
-  
+279134399742
+
+
+   
+
+
+    
+
+
+
 
 if __name__ == "__main__":
   main()
