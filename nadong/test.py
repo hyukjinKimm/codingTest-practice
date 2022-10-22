@@ -36,16 +36,8 @@ def main():
       return
     solve(n)
 
-279134399742
-
+dd
 
    
-
-
-    
-
-
-
-
 if __name__ == "__main__":
   main()
