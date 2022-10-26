@@ -1,14 +1,17 @@
+from optparse import BadOptionError
 import sys
 from collections import deque
+from itertools import combinations
 import heapq as hq
-#sys.stdin=open("input.txt", "r")
+sys.setrecursionlimit(10**6)
 
-def b(x):
-  if x == 0:
-    return
+
+def bin(x):
+  if x == 1: print(1,end='')
   else:
-    b(x//2)
-    print(x%2,end='')
+    bin(x//2)
+    print(x%2, end='')
 
 n = int(input())
-b(n)
+
+bin(n)
