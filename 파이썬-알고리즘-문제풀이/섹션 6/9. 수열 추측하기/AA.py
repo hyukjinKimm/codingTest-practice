@@ -1,39 +1,34 @@
 import sys
-from collections import deque
 from itertools import permutations
-import heapq as hq
-#sys.stdin=open("input.txt", "r")
 
-def d(L):
-  global cnt
-  if L == m: 
-    cnt += 1
-    for x in res:
-      print(x, end=  ' ')
-    print()
+def D(x):
+
+  if x >= n:
+    tot = 0
+    for i in range(n):
+      tot += b[i] * res[i]
+    if tot == k:
+      for x in res:
+        print(x, end = ' ')
+      sys.exit()
 
   else:
-    for i in range(n):
+    for i in range(1, n+1):
       if ch[i] == 0:
-        ch[i] = 1
-        res[L] = i+1
-        d(L+1)
+        ch[i] = 1 
+        res[x] = i
+        D(x+1)
         ch[i] = 0
+
+n, k = map(int, input().split())
+res = [0] * k 
+
+def main():
+  D(0, 0)
+
   
 
-    
-      
-n, m = map(int, input().split())
-b = [1] * n 
-for i in range(1, n):
-  b[i] = b[i-1] * (n-i) // i 
 
-arr = [i+1 for i in range(n)]
-for x in permutations(arr):
-  sum = 0
-  for i in range(n):
-    sum += b[i] * x[i]
-  if sum == m:
-    for j in x:
-      print(j, end = ' ')
-    sys.exit()
+if __name__ == '__main__':
+  main()
+

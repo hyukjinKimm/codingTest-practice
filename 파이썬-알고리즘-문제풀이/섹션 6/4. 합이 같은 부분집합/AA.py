@@ -1,21 +1,21 @@
 import sys
-from collections import deque
-import heapq as hq
-#sys.stdin=open("input.txt", "r")
-
-def d(L, sum):
-  if L == n:
-    if tot - sum == sum:
+def D(x, s):
+  if x >= len(arr):
+    if s == sum(arr) - s:
       print('YES')
       sys.exit()
   else:
-    d(L+1, sum + arr[L])
-    d(L+1, sum)
-    
-
+    D(x+1, s+arr[x])
+    D(x+1, s)
+  
 
 n = int(input())
 arr = list(map(int, input().split()))
-tot = sum(arr)
-d(0, 0)
-print('NO')
+
+def main():
+  D(0, 0)
+  print('NO')
+
+if __name__ == '__main__':
+  main()
+

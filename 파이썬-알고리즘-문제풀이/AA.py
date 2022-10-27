@@ -1,28 +1,39 @@
-from optparse import BadOptionError
 import sys
-from collections import deque
-from itertools import combinations
-import heapq as hq
-sys.setrecursionlimit(10**6)
+from itertools import permutations
 sys.stdin=open("input.txt", "r")
 
-n, m = map(int, input().split())
-graph = [[0]*n for _ in range(n)]
-degree = [0] * n
-for _ in range(n):
-  a, b = map(int, input().split())
-  graph[a-1][b-1] = 1
-  degree[b-1] += 1
-q = deque()
-for i in range(n):
-  if degree[i] == 0 :
-    q.append(i)
+def D(x):
+  ch[x] = 1
+  global cnt
+  if x == n:
+    print(path)   
+  else:
+    for i in range(1, n+1):
+      if graph[x][i] == 1 and ch[i] == 0:
 
-while q:
-  now = q.popleft()
-  print(now+1, end=' ')
-  for i in range(n):
-    if graph[now][i] == 1:
-      degree[i] -= 1
-      if degree[i] == 0:
-        q.append(i)
+        ch[i] = 1
+        path.append(i)
+        D(i)
+        path.pop()
+        ch[i] = 0
+
+    
+     
+
+n, m = map(int, input().split())
+graph = [[0]*(n+1) for _ in range(n+1)]
+ch = [0] * (n+1)
+for i in range(m):
+  a, b= map(int, input().split())
+  graph[a][b] = 1
+for x in graph:
+  print(x)
+path = []
+cnt = 0
+def main():
+  path.append(1)
+  D(1)
+if __name__ == '__main__':
+  main()
+
+
