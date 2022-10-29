@@ -1,4 +1,3 @@
-
 import sys
 from collections import deque
 sys.stdin=open("input.txt", "r")
@@ -75,6 +74,6 @@ def main():
     
   
 
-  
+      
 if __name__ == "__main__":
   main()
