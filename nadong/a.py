@@ -1,43 +1,58 @@
-import queue
 import sys
 from collections import deque
-sys.stdin = open("input.txt", "r")
-sys.setrecursionlimit(10 ** 7)
+sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
-dx = [-1, -1, 0, 1, 1, 1, 0, -1]
-dy = [0, 1, 1, 1, 0, -1, -1, -1]
+sys.setrecursionlimit(10**6)
 
-def bfs(x, y):
-  board[x][y] = 0
-  queue = deque([(x, y)])
+
+def bfs(x, d):
+  global sum
+  queue = deque([(x, d)])
   while queue:
-    a, b = queue.popleft()
-    for i in range(8):
-      xx = a + dx[i]
-      yy = b + dy[i]
-      if 0 <= xx < m and 0 <= yy < n and board[xx][yy] == 1:
-        queue.append((xx, yy))
-        board[xx][yy] = 0
+    node, d = queue.popleft()
+    for v in grap[node]:
+      if visited[v] == 0:
+        queue.append((v, d+1))
+        visited[v] = 1
+        dist[v] = d+1
+def dfs(x):
+  global sum
+  for v in grap[x]:
+    if visited[v] == 0:
+      visited[v] = 1
+      dist[v] = dist[x] + 1
+      dfs(v)
+ 
+        
 
-def dfs(x, y):
-  board[x][y] = 0
-  for i in range(8):
-    xx = x + dx[i]
-    yy = y + dy[i]
-    if 0 <= xx < m and 0 <= yy < n and board[xx][yy] == 1:
-      dfs(xx, yy)
-    
-m, n = map(int, input().split())
-board = [list(map(int, input().split())) for _ in range(m)]
+
+n = int(input())
+grap = [[] for _ in range(n+1)]
+visited = [0] * (n+1)
+dist = [0] * (n+1)
+
+for i in range(n-1):
+  a, b = map(int, input().split())
+  grap[a].append(b)
+  grap[b].append(a)
+ 
 
 def main():
-  cnt  = 0
-  for i in range(m):
-    for j in range(n):
-      if board[i][j] == 1:
-        cnt += 1
-        dfs(i, j)
-  print(cnt)
+  sum = 0
+  visited[1] = 1
+  dfs(1)
+
+  for i in range(2, n+1):
+    if len(grap[i]) == 1:
+      sum += dist[i]
+
+  if sum % 2 == 0:
+    print('No')
+  else:
+    print('Yes')
+  
+
+
 
 
 if __name__ == "__main__":
