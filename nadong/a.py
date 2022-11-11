@@ -1,59 +1,37 @@
 import sys
-from collections import deque
-sys.stdin = open('input.txt', 'r')
-input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
+from itertools import combinations, product
+sys.stdin=open("input.txt", "r")
 sys.setrecursionlimit(10**6)
+#input = sys.stdin.readline
+
+def check(n, jw, x): # 질투심 x 로 n명에게 보석을 전부 나눠줄수 있는가? 
+  if len(jw) > n:
+    return False 
 
 
-def bfs(x, d):
-  global sum
-  queue = deque([(x, d)])
-  while queue:
-    node, d = queue.popleft()
-    for v in grap[node]:
-      if visited[v] == 0:
-        queue.append((v, d+1))
-        visited[v] = 1
-        dist[v] = d+1
-def dfs(x):
-  global sum
-  for v in grap[x]:
-    if visited[v] == 0:
-      visited[v] = 1
-      dist[v] = dist[x] + 1
-      dfs(v)
- 
-        
 
 
-n = int(input())
-grap = [[] for _ in range(n+1)]
-visited = [0] * (n+1)
-dist = [0] * (n+1)
 
-for i in range(n-1):
-  a, b = map(int, input().split())
-  grap[a].append(b)
-  grap[b].append(a)
- 
+
 
 def main():
-  sum = 0
-  visited[1] = 1
-  dfs(1)
-
-  for i in range(2, n+1):
-    if len(grap[i]) == 1:
-      sum += dist[i]
-
-  if sum % 2 == 0:
-    print('No')
-  else:
-    print('Yes')
-  
-
-
-
+  n, m = map(int, input().split())
+  jw = []
+  for _ in range(m):
+    jw.append(int(input()))
+  jw.sort()
+  res = 0
+  lt = 1
+  rt = sum(jw)
+  while lt<=rt:
+    mid = (lt+rt) // 2
+    if check(n, jw, mid):
+      res = mid 
+      rt = mid - 1
+    else:
+      lt = mid + 1
+  print(res)
 
 if __name__ == "__main__":
     main()
